@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal Pelajaran dan Piket</title>
+    <style>
+        /* Menetapkan dasar untuk body */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        /* Menambahkan animasi pada teks */
+        .animated-text {
+            font-size: 2.5em;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0; /* Mulai dengan lebar 0 */
+            animation: slide-text 4s forwards; /* Menjalankan animasi */
+            margin-bottom: 30px; /* Spasi antara teks dan konten lainnya */
+            color: #2c3e50;
+        }
+
+        /* Keyframe animasi untuk membuat teks muncul dari kiri ke kanan */
+        @keyframes slide-text {
+            0% {
+                width: 0;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+
+        /* Kontainer untuk jadwal */
+        .schedule-container {
+            background-color: white;
+            width: 80%;
+            max-width: 800px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            overflow-x: auto; /* Tambahkan scroll horizontal jika konten melebihi lebar */
+        }
+
+        /* Styling untuk tombol */
+        .button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Efek hover pada tombol */
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Efek fokus pada tombol */
+        .button:focus {
+            outline: none;
+        }
+
+        /* Styling untuk tabel jadwal pelajaran dan piket */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        /* Styling untuk jadwal pelajaran dan jadwal piket */
+        .hidden {
+            display: none;
+        }
+
+        /* Styling untuk daftar jadwal pelajaran dan piket */
+        .schedule-header {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Teks Animasi -->
+    <div class="animated-text">
+        Jadwal Sekolah dan Piket
+    </div>
+
+    <!-- Tombol untuk memilih jadwal pelajaran atau jadwal piket -->
+    <div>
+        <button class="button" onclick="toggleSchedule('pelajaran')">Lihat Jadwal Pelajaran</button>
+        <button class="button" onclick="toggleSchedule('piket')">Lihat Jadwal Piket</button>
+    </div>
+
+    <!-- Kontainer untuk Jadwal Pelajaran -->
+    <div class="schedule-container" id="jadwal-pelajaran" class="hidden">
+        <h2 class="schedule-header">Jadwal Pelajaran</h2>
+        <table>
+            <tr>
+                <th>Hari</th>
+                <th>Jam</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>Senin</td>
+                <td>06:30 - 14:00</td>
+                <td>Bahasa Inggris</td>
+                <td>Bahasa Inggris</td>
+                <td>Bahasa Inggris</td>
+                <td>Istirahat</td>
+                <td>Bahasa Indonesia</td>
+                <td>Bahasa Indonesia</td>
+                <td>Ishoma</td>
+                <td>Matematika</td>
+                <td>Matematika</td>
+                <td>P5</td>
+            </tr>
+            <tr>
+                <td>Selasa</td>
+                <td>06:30 - 14:00</td>
+                <td>Ipa</td>
+                <td>Ipa</td>
+                <td>Pai</td>
+                <td>Istirahat</td>
+                <td>Matematika</td></td>
+                <td>Bahasa Indonesia</td>
+                <td>Bahasa Indonesia</td>
+                <td>Ishoma</td>
+                <td>P5</td>
+            </tr>
+            <tr>
+                <td>Rabu</td>
+                <td>06:30 - 14:00</td>
+                <td>Seni Rupa</td>
+                <td>Seni Rupa</td>
+                <td>Ips</td>
+                <td>Ips</td>
+                <td>Istirahat</td>
+                <td>Ips</td>
+                <td>Informatika</td>
+                <td>Informatika</td>
+                <td>Ishoma</td>
+                <td>P5</td>
+            </tr>
+            <tr>
+                <td>Kamis</td>
+                <td>06:30 - 14:00</td>
+                <td>PPkn</td>
+                <td>PPkn</td>
+                <td>Pjok</td>
+                <td>Pjok</td>
+                <td>Istirahat</td>
+                <td>Matematika</td>
+                <td>Ipa</td>
+                <td>Ipa</td>
+                <td>Ishoma</td>
+                <td>P5</td>
+            </tr>
+            <tr>
+                <td>Jumat</td>
+                <td>06:30 - 12:30</td>
+                <td>P5</td>
+            </tr>
+            <!-- Tambahkan lebih banyak mata pelajaran sesuai kebutuhan -->
+        </table>
+    </div>
+
+    <!-- Kontainer untuk Jadwal Piket -->
+    <div class="schedule-container hidden" id="jadwal-piket">
+        <h2 class="schedule-header">Jadwal Piket</h2>
+        <table>
+            <tr>
+                <th>Hari</th>
+                <th>Waktu</th>
+                <th>Petugas Piket</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>Senin</td>
+                <td>14:00 - Selesai</td>
+                <td>Afrizal</td>
+                <td>Akbar</td>
+                <td>Aisyah</td>
+                <td>Anas</td> 
+                <td>Andira</td>
+                <td>Anna</td>
+                <td>Bilfaqih</td>
+            </tr>
+            <tr>
+                <td>Selasa</td>
+                <td>14:00 - Selesai</td>
+                <td>Damar</td>
+                <td>Fadlan</td>
+                <td>Fauzan</td>
+                <td>Hafizh</td>
+                <td>Haikal</td>
+                <td>Hanna</td>
+                <td>Karina</td>
+            </tr>
+            <tr>
+                <td>Rabu</td>
+                <td>14:00 - Selesai</td>
+                <td>Mike</td>
+            </tr>
+            <tr>
+                <td>Kamis</td>
+                <td>14:00 - Selesai</td>
+                <td>Susan</td>
+            </tr>
+            <tr>
+                <td>Jumat</td>
+                <td>14:00 - Selesai</td>
+                <td>Rayan</td>
+            </tr>
+            <!-- Tambahkan lebih banyak jadwal piket sesuai kebutuhan -->
+        </table>
+    </div>
+
+    <script>
+        // Fungsi untuk menampilkan dan menyembunyikan jadwal
+        function toggleSchedule(scheduleType) {
+            // Menyembunyikan semua kontainer jadwal
+            document.getElementById('jadwal-pelajaran').classList.add('hidden');
+            document.getElementById('jadwal-piket').classList.add('hidden');
+            
+            // Menampilkan kontainer jadwal yang dipilih
+            if (scheduleType === 'pelajaran') {
+                document.getElementById('jadwal-pelajaran').classList.remove('hidden');
+            } else if (scheduleType === 'piket') {
+                document.getElementById('jadwal-piket').classList.remove('hidden');
+            }
+        }
+    </script>
+
+</body>
+</html>
